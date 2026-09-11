@@ -1,0 +1,29 @@
+#floorPlan {
+	/*
+	position: absolute; 
+	left: 0px; 
+	top: 0px; 
+	border: 0px solid red;
+*/
+}
+
+.CADViewer {
+	position: relative; 
+	/* left: 170px;   -use if CADViewerSpaceObjects.js is included as component  */
+
+
+	left: 5px;  
+
+
+	/*	top: 250px; 
+	border: 0px solid red;
+	*/
+}
+
+
+
+
+
+
+.cvjs_main_icon_menu, #cvjs_main_icon_menu_1 { background-color: white !important; }
+.cadviewer-bootstrap { background-color: white !important; }

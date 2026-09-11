@@ -1,0 +1,66 @@
+# CADViewer Vue 3 Application
+
+This project is a modern Vue 3 web application integrated with the **CADViewer Conversion Server**. It replicates and modernizes legacy visual query applications, providing an interface to load, browse, and interact with CAD files (DWG, DGN, PDF, SVG, etc.) dynamically.
+
+## 🚀 Technologies Used
+
+- **Framework:** [Vue 3](https://vuejs.org/) (Composition API, `<script setup>`)
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **UI Components:** [Headless UI Vue](https://headlessui.com/vue)
+- **CAD Engine:** [CADViewer API](https://cadviewer.com/) & AutoXchange Conversion Server
+
+## ✨ Features Implemented (Phase 1)
+
+* **Integrated CADViewer Canvas:** Deep integration with CADViewer JS library to dynamically display engineered CAD drawings within the DOM.
+* **Backend Connection:** Connected to the `cadviewer-conversion-server-nextgen` backend to list drawing directories and invoke CAD conversions.
+* **Modern Header UI:** A sleek, flex-based top navigation header built with Tailwind CSS.
+* **Slide-Out File Browser:** A smooth left-side flyout modal utilizing Headless UI's `<Dialog>` and `<TransitionRoot>`.
+* **Dynamic File Structure:** Interactive folder tree displaying directories, SVGs, DWGs, and PDFs dynamically pulled from the backend API.
+* **AutoXchange Conversion Pipeline:** Seamless URL routing to securely fetch files locally, parse relative URLs into absolute server queries, and render the resulting data in CADViewer.
+
+## 🛠️ Project Setup & Installation
+
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed, and the corresponding CADViewer conversion server running locally on `http://localhost:3000`.
+
+### Install Dependencies
+```bash
+npm install
+```
+
+### Development Server
+Run the project locally with Vite's blazing-fast HMR.
+```bash
+npm run dev
+```
+
+### Build for Production
+Compiles and minifies the Vue app into static assets.
+```bash
+npm run build
+```
+
+## 📁 Key File Structure
+
+* `src/App.vue`: The main entrypoint mapping out the layout, Header, Dialog modals, and the CADViewer canvas.
+* `src/components/CADViewer/CADViewer.vue`: The core wrapper around the CADViewer lifecycle, managing initialization, config, and `cvjs_` API binding.
+* `src/components/FolderStructure/FolderStructure.vue`: The backend-integrated file browser. Fetches available files from the conversion server API and builds a selectable folder tree.
+* `src/components/FolderStructure/FolderNode.vue`: A recursive UI component that visualizes nested folders and individual files with format-specific SVGs.
+* `src/demos/hooks/useConfig.ts`: The central configuration manager binding the frontend application to the `cadviewer-conversion-server-nextgen` API.
+
+## 🔧 CADViewer Configuration
+
+To configure the application against your own server instance, verify the endpoint mappings inside `src/utils/config.ts`:
+
+```typescript
+ServerBackEndUrl: "http://localhost:3000",   // Target for CADViewer backend API and conversion server
+ServerUrl: "http://localhost:3001",          // Frontend server (Optional local override)
+```
+
+**Note:** CAD files loaded from the `FolderStructure` will automatically sanitize relative folder queries and prepend the `ServerBackEndUrl` for absolute remote loading into the AutoXchange pipeline.
+
+---
+
+*Part of the CADViewer integration suite. Ready for Phase 2: Visual Queries and Information Panels.*

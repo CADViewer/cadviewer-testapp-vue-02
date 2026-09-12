@@ -19,7 +19,7 @@
               <div class="flex flex-row items-center gap-4">
                 <h4 class="font-bold text-gray-800 m-0 flex items-center gap-2">
                   <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" width="24" height="24" alt="Vue Logo" style="margin-top: -4px;" />
-                  CADViewer: Vue.js 3 Visual Query Sample
+                  CADViewer: Vue.js 3 Visual Query Sample (Composition API)
                 </h4>
                 
                 <!-- GitHub Link Injection -->

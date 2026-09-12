@@ -16,9 +16,18 @@
         <div class="flex flex-wrap items-center lg:ml-4 min-w-0 flex-1">
           <div class="flex flex-col justify-start items-start lg:ml-4 min-w-0">
             <div>
-              <h4 class="font-bold text-gray-800">
-                CADViewer: Integrated with CADViewer Conversion Server
-              </h4>
+              <div class="flex flex-row items-center gap-4">
+                <h4 class="font-bold text-gray-800 m-0 flex items-center gap-2">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" width="24" height="24" alt="Vue Logo" style="margin-top: -4px;" />
+                  CADViewer: Vue.js 3 Visual Query Sample
+                </h4>
+                
+                <!-- GitHub Link Injection -->
+                <a href="https://github.com/CADViewer/cadviewer-testapp-vue-02" target="_blank" class="flex items-center gap-1 text-sm text-gray-700 hover:text-black no-underline">
+                  <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" class="w-4 h-4" style="width:16px; height:16px;" alt="GitHub Logo"/>
+                  <span class="font-medium whitespace-nowrap">Pull or clone from GitHub</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

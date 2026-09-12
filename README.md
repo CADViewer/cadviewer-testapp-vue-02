@@ -52,14 +52,24 @@ npm run build
 
 ## 🔧 CADViewer Configuration
 
+The `src/utils/config.ts` (and its environment-specific overlays in `src/demos/`) acts as the central brain for the frontend application. It is a **dynamic, evolving wrapper** that houses all the settings, feature flags, and API configurations necessary to securely initialize and control CADViewer. 
+
+This configuration dictates everything from UI toggles (e.g., displaying top menus) to backend routing for file conversions. As the application evolves, this document will change dynamically to support new workflows.
+
 To configure the application against your own server instance, verify the endpoint mappings inside `src/utils/config.ts`:
 
 ```typescript
 ServerBackEndUrl: "http://localhost:3000",   // Target for CADViewer backend API and conversion server
 ServerUrl: "http://localhost:3001",          // Frontend server (Optional local override)
+ServerLocation: "",                          // Physical location override (typically blank for AutoXchange)
 ```
 
 **Note:** CAD files loaded from the `FolderStructure` will automatically sanitize relative folder queries and prepend the `ServerBackEndUrl` for absolute remote loading into the AutoXchange pipeline.
+
+### Official Documentation & API
+For a deep dive into the available configuration parameters, API calls, and initialization workflows, please reference the official CADViewer developer documentation:
+* **CADViewer Frontend Tech Docs:** [https://cadviewer.com/cadviewertechdocs/frontend/](https://cadviewer.com/cadviewertechdocs/frontend/)
+* **CADViewer Global API Reference:** [https://cadviewer.com/cadviewerproapi/global.html](https://cadviewer.com/cadviewerproapi/global.html)
 
 ---
 

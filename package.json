@@ -1,7 +1,7 @@
 {
   "name": "cadviewer-testapp-vue-02",
   "private": true,
-  "version": "12.15.7",
+  "version": "12.16.12",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
     "@heroicons/vue": "^2.2.0",
-    "cadviewer": "^12.15.7",
+    "cadviewer": "^12.16.12",
     "classnames": "^2.5.1",
     "jquery": "^4.0.0",
     "pinia": "^4.0.3",

@@ -66,6 +66,28 @@ ServerLocation: "",                          // Physical location override (typi
 
 **Note:** CAD files loaded from the `FolderStructure` will automatically sanitize relative folder queries and prepend the `ServerBackEndUrl` for absolute remote loading into the AutoXchange pipeline.
 
+These settings can also be given at build time as environment variables (read by Vite), without editing the code:
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `VITE_SERVER_BACKEND_URL` | `http://localhost:3000` | CADViewer conversion server |
+| `VITE_SERVER_URL` | URL the app is served from | Front end server |
+| `VITE_SERVER_SUB_FOLDER` | none | Only list this folder of the server `content/` in *Open Files*, e.g. `demo3` |
+| `VITE_INIT_FILE_NAME` | `/content/drawings/dwg/1st_floor_electrical.dwg` | Drawing loaded on start |
+
+## 🐳 Docker / Coolify
+
+The `Dockerfile` builds the app and serves the static build with nginx on port 80:
+
+```bash
+docker build -t cadviewer-testapp-vue-02 \
+  --build-arg VITE_SERVER_BACKEND_URL=https://server.demo.cadviewer.com \
+  --build-arg VITE_SERVER_SUB_FOLDER=demo3 .
+docker run -p 8080:80 cadviewer-testapp-vue-02
+```
+
+On Coolify: create a resource from this repository with the **Dockerfile** build pack (port `80`) and add the `VITE_*` variables as **build variables**.
+
 ## Documentation & Guides
 
 For a deep dive into the available configuration parameters, API calls, and workflows, please reference the official CADViewer developer documentation:

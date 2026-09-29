@@ -3,8 +3,8 @@
     <div v-if="loading" class="text-sm text-gray-500 p-4">Loading folders...</div>
     <div v-else-if="error" class="text-sm text-red-500 p-4">{{ error }}</div>
     <div v-else class="p-2">
-      <ul v-if="folderStructure.length > 0">
-        <li v-for="node in folderStructure" :key="node.path" class="my-1">
+      <ul v-if="visibleNodes.length > 0">
+        <li v-for="node in visibleNodes" :key="node.path" class="my-1">
           <div 
             class="flex items-center cursor-pointer hover:bg-gray-100 p-2 rounded justify-between"
             @click="handleClick(node)"
@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import cadviewer from 'cadviewer';
 import useConfig from '../../demos/hooks/useConfig';
 import FolderNode from './FolderNode.vue';
@@ -55,6 +55,25 @@ const folderStructure = ref<FileNode[]>([]);
 const loading = ref(true);
 const error = ref<string | null>(null);
 const expanded = ref<Record<string, boolean>>({});
+
+// With showOnlySubFolder, only the content of serverSubFolder (e.g. "demo3") is listed
+const visibleNodes = computed<FileNode[]>(() => {
+  const subFolder = config.value.serverSubFolder;
+  if (!config.value.showOnlySubFolder || !subFolder) return folderStructure.value;
+
+  const target = subFolder.replace(/\\/g, '/').replace(/\/+$/, '');
+  const targetName = target.split('/').filter(Boolean).pop();
+  const findFolder = (nodes: FileNode[]): FileNode | null => {
+    for (const node of nodes) {
+      if (!node.children) continue;
+      if (node.path?.replace(/\\/g, '/').endsWith(target) || node.name === targetName) return node;
+      const found = findFolder(node.children);
+      if (found) return found;
+    }
+    return null;
+  };
+  return findFolder(folderStructure.value)?.children ?? [];
+});
 
 const getFileIcon = (filename: string) => {
   const ext = filename.split('.').pop()?.toLowerCase();

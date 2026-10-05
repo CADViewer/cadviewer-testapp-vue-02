@@ -1,5 +1,7 @@
 # CADViewer Vue 3 Application (Composition API)
 
+🔗 **Live demo:** https://cadviewer-testapp-vue-02.cadviewer.com
+
 This project is a modern Vue 3 web application integrated with the **CADViewer Conversion Server**. It replicates and modernizes legacy visual query applications, providing an interface to load, browse, and interact with CAD files (DWG, DGN, PDF, SVG, etc.) dynamically.
 
 ## 🚀 Technologies Used
